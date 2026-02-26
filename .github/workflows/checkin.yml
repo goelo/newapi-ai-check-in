@@ -138,7 +138,7 @@ jobs:
           echo "⚠️ storage-states 目录不存在"
         }
         # 执行签到
-        uv run python -u main.py | Tee-Object -FilePath checkin_output.txt
+        uv run python -u main.py
 
     - name: 保存登录状态缓存
       if: hashFiles('storage-states/*.json') != ''
