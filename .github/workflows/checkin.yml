@@ -175,7 +175,7 @@ jobs:
       run: |
         import os, json, urllib.request
 
-        webhook = os.environ.get('DISCORD_WEBHOOK', '')
+        webhook = os.environ.get('DISCORD_WEBHOOK', '').strip()
         if not webhook:
             print('No webhook, skipping')
             exit(0)
