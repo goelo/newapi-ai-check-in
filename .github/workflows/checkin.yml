@@ -167,42 +167,6 @@ jobs:
         if-no-files-found: ignore
         retention-days: 7
 
-    - name: 发送 Discord 签到报告
-      if: always()
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      shell: python
-      run: |
-        import os, json, urllib.request
-
-        webhook = os.environ.get('DISCORD_WEBHOOK', '').strip()
-        if not webhook:
-            print('No webhook, skipping')
-            exit(0)
-        print(f'webhook len={len(webhook)}, starts={webhook[:30]}')
-
-        log_file = 'checkin_output.txt'
-        if os.path.exists(log_file):
-            with open(log_file, encoding='utf-8', errors='replace') as f:
-                log = f.read()
-            lines = []
-            for line in log.splitlines():
-                if any(k in line for k in ['📣', '✅ SUCCESS', '❌', '💰', '🔵 Success', '🔴 Failed', 'All accounts']):
-                    lines.append(line.strip())
-            summary = '\n'.join(lines[-30:]) if lines else '无详细摘要'
-        else:
-            summary = '未找到签到日志'
-
-        msg = f'**📋 中转站签到报告**\n```\n{summary}\n```'
-        payload = json.dumps({'content': msg[:1990]}).encode()
-        req = urllib.request.Request(webhook, data=payload,
-            headers={'Content-Type': 'application/json'})
-        try:
-            resp = urllib.request.urlopen(req, timeout=10)
-            print(f'Discord sent: {resp.status}')
-        except Exception as e:
-            print(f'Discord failed: {e}')
-
     - name: 执行结果
       if: always()
       run: |
