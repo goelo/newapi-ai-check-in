@@ -179,6 +179,7 @@ jobs:
         if not webhook:
             print('No webhook, skipping')
             exit(0)
+        print(f'webhook len={len(webhook)}, starts={webhook[:30]}')
 
         log_file = 'checkin_output.txt'
         if os.path.exists(log_file):
