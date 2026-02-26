@@ -238,5 +238,25 @@
         "linuxdo_auth_redirect_path": "/oauth/**",
         "aliyun_captcha": false,
         "bypass_method": null
+    },
+    "infiniteai_cc": {
+        "origin": "https://infiniteai.cc",
+        "login_path": "/login",
+        "status_path": "/api/status",
+        "auth_state_path": "/api/oauth/state",
+        "check_in_path": "/api/user/checkin",
+        "check_in_status": true,
+        "user_info_path": "/api/user/self",
+        "topup_path": "/api/user/topup",
+        "get_cdk": null,
+        "api_user_key": "new-api-user",
+        "github_client_id": null,
+        "github_auth_path": "/api/oauth/github",
+        "github_auth_redirect_path": "/oauth/**",
+        "linuxdo_client_id": "6iVb17PDaU34Ke2jW7Qe2kz84Nl6kmEu",
+        "linuxdo_auth_path": "/api/admin/login/linuxdo",
+        "linuxdo_auth_redirect_path": "/api/admin/login/linuxdo/callback**",
+        "aliyun_captcha": false,
+        "bypass_method": null
     }
 }
